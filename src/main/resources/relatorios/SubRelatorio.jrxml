@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SubRelatorio" pageWidth="552" pageHeight="842" columnWidth="552" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e707e329-76c3-4694-8af3-ab7a120cd06c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<parameter name="ID_VEICULO" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT codigo,
+	dataagendamento,
+	codigo_veiculo,
+	situacao
+FROM agendamento
+WHERE codigo_veiculo =  $P{ID_VEICULO}]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendamento"/>
+	</field>
+	<field name="dataagendamento" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="dataagendamento"/>
+		<property name="com.jaspersoft.studio.field.label" value="dataagendamento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendamento"/>
+	</field>
+	<field name="codigo_veiculo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="codigo_veiculo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo_veiculo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendamento"/>
+	</field>
+	<field name="situacao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="situacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="situacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendamento"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="47" splitType="Stretch">
+			<textField>
+				<reportElement x="33" y="23" width="100" height="19" uuid="cfadabf2-37b6-464f-a2c7-9396da67c33a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="33" y="0" width="100" height="20" uuid="b573dbf9-49d3-47ba-b9b4-01f646dbcebc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="210" y="23" width="130" height="19" uuid="662c4d58-5421-462a-89e9-b7e722bbf430"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dataagendamento})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="0" width="170" height="20" uuid="1257117c-62a8-48cb-85a9-5ba2a62d7115"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data do Agendamento]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="390" y="23" width="100" height="19" uuid="90fc8b16-b60f-437f-8fe8-ddf47fafa3bc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="390" y="0" width="100" height="20" uuid="4f3071a8-e3e0-49c5-bcb8-c239c340c2f4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="6" y="42" width="540" height="4" uuid="0bfea164-7b92-43a7-8b58-7ef8aa0e635c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

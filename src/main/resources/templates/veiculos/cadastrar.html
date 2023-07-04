@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR" layout:decorate="~{layout/layoutpadrao}" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Cadastrar Veículos</title>
+</head>
+
+<body>
+    <div layout:fragment="conteudo">
+
+        <div th:replace="~{layout/fragments/sidebar :: sidebar(opcao='veiculos')}"></div>
+
+        <!-- conteudo principal -->
+        <main class="mt-5 p-4 pt-5">
+            <div class="container-fluid">
+                
+                <form th:action="@{/veiculos/escolherusuario}" method="POST">
+                    <input th:if="${session.veiculo.usuario == null}" type="submit" value="Escolher Usuário" class="btn btn-primary mt-3">
+                    <input th:if="${session.veiculo.usuario != null}" type="submit" value="Trocar Usuário" class="btn btn-primary mt-3">
+                </form>
+                <div th:if="${session.veiculo.usuario != null}" class="mt-3">
+                    <label for="nome" class="form-label mt-3">Proprietário</label>
+                    <input type="text" id="nome" th:value="${session.veiculo.usuario.nome}" class="form-control" disabled="">
+                    <!-- <p th:text="'Nome: ' + ${session.veiculo.usuario.nome}"></p>
+                    <p th:text="'CPF: ' + ${session.veiculo.usuario.cpf}"></p> -->
+                    
+                </div>
+
+                <form th:action="@{/veiculos/cadastrar}" method="POST" th:object="${veiculo}">
+                    <input type="hidden" th:field="*{codigo}">
+
+                    <label for="cor" class="form-label mt-3">Cor</label>
+                    <input type="text" id="cor" th:field="*{cor}" class="form-control"th:errorclass="is-invalid"> 
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('cor')}"
+						th:each="erro : ${#fields.errors('cor')}" th:text="${erro} + '. '"></span>
+
+                    <label for="placa" class="form-label mt-3">Placa</label>
+                    <input type="text" id="placa" th:field="*{placa}" class="form-control" th:errorclass="is-invalid"> 
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('placa')}"
+						th:each="erro : ${#fields.errors('placa')}" th:text="${erro} + '. '"></span>
+
+                    <label for="anoFabricacao" class="form-label mt-3">Ano de Fabricação</label>
+                    <input type="text" id="anoFabricacao" th:field="*{anoFabricacao}" class="form-control" th:errorclass="is-invalid"> 
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('anoFabricacao')}"
+						th:each="erro : ${#fields.errors('anoFabricacao')}" th:text="${erro} + '. '"></span>
+
+                    <label for="marca" class="form-label mt-3">Marca</label>
+                    <input type="text" id="marca" th:field="*{marca}" class="form-control" th:errorclass="is-invalid"> 
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('marca')}"
+						th:each="erro : ${#fields.errors('marca')}" th:text="${erro} + '. '"></span>
+
+                    <label for="nome" class="form-label mt-3">Nome do Veículo</label>
+                    <input type="text" id="nome" th:field="*{nome}" class="form-control" th:errorclass="is-invalid"> 
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('nome')}"
+						th:each="erro : ${#fields.errors('nome')}" th:text="${erro} + '. '"></span>
+
+                  <input  th:disabled="${session.veiculo.usuario == null}" type="submit" value="Cadastrar" class="btn btn-primary mt-3">
+               
+                  <div th:if="${notificacao != null}" th:object="${notificacao}">
+                      <input type="hidden" id="mensagem" th:value="*{mensagem}">
+                      <input type="hidden" id="tipo" th:value="*{tipo}">
+                      <input type="hidden" id="intervalo" th:value="*{intervalo}">
+                  </div>
+                </form>
+            </div>
+        </main>
+        <!-- !conteudo principal -->
+
+    </div>
+
+</body>
+
+</html>

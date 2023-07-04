@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR" layout:decorate="~{layout/layoutpadrao}" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Todas os Agendamentos</title>
+</head>
+
+<body>
+	<div layout:fragment="conteudo">
+
+		<div th:replace="~{layout/fragments/sidebar :: sidebar(opcao=${uso})}"></div>
+
+		<!-- conteudo principal -->
+		<main class="mt-5 p-4 pt-5">
+			<div class="container-fluid">
+				 <table class="table table-dark">
+					<tr>
+						<div
+							th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'codigo', 'Código', 'w-25')}">
+						</div>
+						 <!-- <div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'nome', 'Proprietário', '')}"></div>  -->
+						
+						<th scope="col">Data do Agendamento</th>
+						<th scope="col">Situaçao</th>
+						<th scope="col">Nome do Veículo</th>
+						<th scope="col">Marca</th>
+						<th scope="col">Proprietário</th>
+						 <!-- <div th:if="${uso == 'veiculos'}">
+							<th scope="col" colspan="2">Operação</th>
+						</div> -->
+						<div th:if="${uso == 'agendamentos'}">
+							<th scope="col" colspan="1">Operação</th>
+						</div> 
+					</tr>
+					<tr th:each="agendamento : ${pagina.conteudo}">
+						<td th:text="${agendamento.codigo}"></td>
+						
+						<td th:text="${{agendamento.dataAgendamento}}"></td>
+						<td th:text="${agendamento.situacao}"></td>
+						<td th:text="${agendamento.veiculo.nome}"></td>
+						<td th:text="${agendamento.veiculo.marca}"></td>
+						<td th:text="${agendamento.veiculo.usuario.nome}"></td>
+						  <div th:if="${uso == 'agendamentos'}">
+							<td>
+								
+								<form th:action="@{/agendamentos/abriralterar}" method="POST">
+									<input type="hidden" name="codigo" th:value="${agendamento.codigo}">
+									 <button type="submit" class="btn btn-primary">
+										<i class="bi bi-pencil-fill"></i>
+									</button> 
+								</form>
+							</td>
+							</div>
+							<!--<td>
+								<form th:action="@{/veiculos/remover}" method="POST">
+									<input type="hidden" th:value="'Você tem certeza que quer remover o veículo do(a) ' + ${veiculo.usuario.nome} + '?'" class="mensagem">
+									<input type="hidden" name="codigo" th:value="${veiculo.codigo}">
+									<button type="submit" class="btn btn-danger confirmacao">
+										<i class="bi bi-trash-fill"></i>
+									</button>
+								</form>
+							</td>
+						</div>
+						<div th:if="${uso == 'agendamentos'}">
+							<td>
+								<form th:action="@{/agendamentos/definirveiculo}" method="POST">
+									<input type="hidden" name="codigoVeiculo" th:value="${veiculo.codigo}">
+									<button type="submit" class="btn btn-primary">
+										Escolher
+									</button>
+								</form>
+							</td>
+						</div>  -->
+					</tr>
+				</table>
+
+				<div th:replace="~{layout/fragments/paginacao :: paginacao(${pagina})}"></div>
+
+			</div>
+		</main>
+		<!-- !conteudo principal -->
+
+	</div>
+
+</body>
+
+</html>

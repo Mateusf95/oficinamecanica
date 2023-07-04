@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+body,
+button {
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  --sidebar-width: 270px;
+  --top-navbar-height: 56px;
+}
+
+.sidebar-nav {
+  width: var(--sidebar-width) !important;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-link .right-icon {
+  display: inline-flex;
+}
+
+.sidebar-link[aria-expanded="true"] .right-icon {
+  transform: rotate(180deg);
+}
+
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+
+  main {
+    margin-left: var(--sidebar-width);
+    height: calc(100% - var(--top-navbar-height));
+  }
+
+  footer {
+    margin-left: var(--sidebar-width);
+  }
+
+  /* this is to remove the backdrop */
+  .offcanvas-backdrop {
+    display: none !important;
+  }
+
+  .sidebar-nav {
+    transform: none !important;
+    visibility: visible !important;
+    top: var(--top-navbar-height) !important;
+    height: calc(100% - var(--top-navbar-height));
+  }
+}
+/* TABELA*/
+/* table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+th {
+  background-color: #34373b;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  text-align: center;
+}
+td{
+  padding: 12px;
+  border-bottom: 1px solid #ECECEC;
+  text-align: center;
+}
+tbody tr{
+  background-color: #3970BE;
+  color: white
+}
+td a {
+  text-decoration: underline;
+  margin: 0 20px;
+  padding-top: 15px;
+}
+td > form {
+  display: inline;
+}
+
+input[type="submit"]{
+  background-color: #154580;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 15px;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+} */

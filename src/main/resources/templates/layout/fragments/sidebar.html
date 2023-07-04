@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<!-- offcanvas sidebar -->
+	<div class="offcanvas offcanvas-start bg-dark bg-gradient text-white sidebar-nav" tabindex="-1" id="sidebar" th:fragment="sidebar (opcao)">
+		<div class="offcanvas-body">
+			<nav class="navbar-dark">
+				<ul class="navbar-nav">
+					<li>
+						<div class="small fw-bold text-uppercase px-3 mt-3">Menu de Opções</div>
+					</li>
+					<li class="my-2">
+						<hr class="dropdown-toggle-split" />
+					</li>
+
+					<!-- 1o elemento -->
+					<li>
+						<a class="nav-link px-3 sidebar-link text-white" data-bs-toggle="collapse" href="#usuarios">
+							<span class="me-2">
+								<i class="bi bi-person-fill"></i>
+							</span>
+							<span>Usuários</span>
+							<span class="ms-auto">
+								<span class="right-icon">
+									<i class="bi bi-chevron-down"></i>
+								</span>
+							</span>
+						</a>   
+						
+						<div class="collapse" id="usuarios" th:classappend="${opcao == 'usuarios'} ? show">
+							<ul class="navbar-nav ps-3">
+								<li>
+									<a th:href="@{/usuarios/cadastrar}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-plus-square text-white"></i>
+										</span>
+										<span class="text-white">Cadastrar</span>
+									</a>
+								</li>
+								<li>
+									<a th:href="@{/usuarios/abrirpesquisar}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-search text-white"></i>
+										</span>
+										<span class="text-white">Pesquisar</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					
+					<!-- 2o elemento -->
+					<li>
+						<a class="nav-link px-3 sidebar-link text-white" data-bs-toggle="collapse" href="#veiculos">
+							<span class="me-2">
+								<i class="bi bi-person-fill bi bi-car-front"></i>
+							</span>
+							<span>Veículos</span>
+							<span class="ms-auto">
+								<span class="right-icon">
+									<i class="bi bi-chevron-down"></i>
+								</span>
+							</span>
+						</a>   
+						
+						<div class="collapse" id="veiculos" th:classappend="${opcao == 'veiculos'} ? show">
+							<ul class="navbar-nav ps-3">
+								<li>
+									<a th:href="@{/veiculos/cadastrar}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-plus-square text-white"></i>
+										</span>
+										<span class="text-white">Cadastrar</span>
+									</a>
+								</li>
+								<li>
+									<a th:href="@{/veiculos/abrirpesquisar}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-search text-white"></i>
+										</span>
+										<span class="text-white">Pesquisar</span>
+									</a>
+								</li>
+								<li>
+									<a th:href="@{/relatorios/veiculocomagendamentos}"  class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-file-earmark-post"></i>
+										</span>
+										<span class="text-white">Relatório</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+
+					<!-- 3o elemento -->
+					<li>
+						<a class="nav-link px-3 sidebar-link text-white" data-bs-toggle="collapse" href="#agendamentos">
+							<span class="me-2">
+								<i class="bi bi-calendar"></i>
+							</span>
+							<span>Agendamento</span>
+							<span class="ms-auto">
+								<span class="right-icon">
+									<i class="bi bi-chevron-down"></i>
+								</span>
+							</span>
+						</a>
+						<div class="collapse" id="agendamentos" th:classappend="${opcao == 'agendamentos'} ? show">
+							<ul class="navbar-nav ps-3">
+								<li>
+									<a th:href="@{/agendamentos/cadastrar}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-plus-square text-white"></i>
+										</span>
+										<span class="text-white">Cadastrar</span>
+									</a>
+								</li>
+								<li>
+									<a th:href="@{/agendamentos/abrirpesquisar}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-search text-white"></i>
+										</span>
+										<span class="text-white">Pesquisar</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+
+
+					<!-- 4o elemento -->
+					<!-- <li>
+						<a class="nav-link px-3 sidebar-link text-white" data-bs-toggle="collapse" href="#vacinas">
+							<span class="me-2">
+								<i class="bi bi-capsule"></i>
+							</span>
+							<span>Vacinas</span>
+							<span class="ms-auto">
+								<span class="right-icon">
+									<i class="bi bi-chevron-down"></i>
+								</span>
+							</span>
+						</a>   
+						
+						<div class="collapse" id="vacinas" th:classappend="${opcao == 'vacinas'} ? show">
+							<ul class="navbar-nav ps-3">
+								<li>
+									<a th:href="@{/vacinas/cadastrar}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-plus-square text-white"></i>
+										</span>
+										<span class="text-white">Cadastrar</span>
+									</a>
+								</li>
+								<li>
+									<a th:href="@{/vacinas/abrirpesquisar}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-search text-white"></i>
+										</span>
+										<span class="text-white">Pesquisar</span>
+									</a>
+								</li> -->
+								<!-- <li>
+									<a th:href="@{/vacinas/todas}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-search text-white"></i>
+										</span>
+										<span class="text-white">Buscar Todas</span>
+									</a>
+								</li>
+								<li>
+									<a th:href="@{/vacinas/buscar}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-search text-white"></i>
+										</span>
+										<span class="text-white">Buscar pelo Código</span>
+									</a>
+								</li>
+								<li>
+									<a th:href="@{/vacinas/buscarnome}" class="nav-link px-3">
+										<span class="me-2">
+											<i class="bi bi-search text-white"></i>
+										</span>
+										<span class="text-white">Buscar pelo Nome</span>
+									</a>
+								</li> -->
+							</ul>
+						</div>
+					</li>
+
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- !offcanvas sidebar -->
+</body>
+</html>

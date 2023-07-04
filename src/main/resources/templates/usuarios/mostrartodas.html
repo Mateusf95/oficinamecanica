@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR" layout:decorate="~{layout/layoutpadrao}" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Todas Pessoas</title>
+</head>
+
+<body>
+	<div layout:fragment="conteudo">
+
+		<div th:replace="~{layout/fragments/sidebar :: sidebar(opcao=${uso})}"></div>
+
+		<!-- conteudo principal -->
+		<main class="mt-5 p-4 pt-5">
+			<div class="container-fluid">
+
+				<table class="table table-dark">
+					<tr>
+						<div
+							th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'codigo', 'Código', 'w-25')}">
+						</div>
+						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'nome', 'Nome', '')}"></div>
+						<th scope="col">CPF</th>
+						<th scope="col">Data de Nascimento</th>
+						<th scope="col">Email</th>
+						<!-- <div th:if="${uso == 'pessoas'}">
+							<th scope="col" colspan="2">Operação</th>
+						</div> -->
+						<div th:if="${uso == 'veiculos'}">
+							<th scope="col" colspan="1">Operação</th>
+						</div>
+						<div th:if="${uso == 'veiculosnovos'}">
+							<th scope="col" colspan="1">Operação</th>
+						</div>
+					</tr>
+					<tr th:each="usuario : ${pagina.conteudo}">
+						<td th:text="${usuario.codigo}"></td>
+						<td th:text="${usuario.nome}"></td>
+						<td th:text="${usuario.cpf}"></td>
+						<td th:text="${{usuario.dataNascimento}}"></td>
+						<td th:text="${usuario.email}"></td>
+						<!-- <div th:if="${uso == 'pessoas'}">
+							<td>
+								<form th:action="@{/pessoas/abriralterar}" method="POST">
+									<input type="hidden" name="codigo" th:value="${pessoa.codigo}">
+									<button type="submit" class="btn btn-primary">
+										<i class="bi bi-pencil-fill"></i>
+									</button>
+								</form>
+							</td>
+							<td>
+								<form th:action="@{/pessoas/remover}" method="POST">
+									<input type="hidden" th:value="'Você tem certeza que quer remover a pessoa ' + ${pessoa.nome} + '?'" class="mensagem">
+									<input type="hidden" name="codigo" th:value="${pessoa.codigo}">
+									<button type="submit" class="btn btn-danger confirmacao">
+										<i class="bi bi-trash-fill"></i>
+									</button>
+								</form>
+							</td>
+						</div> -->
+						<div th:if="${uso == 'veiculos'}">
+							<td>
+								<form th:action="@{/veiculos/definirpessoa}" method="POST">
+									<input type="hidden" name="codigoPessoa" th:value="${usuario.codigo}">
+									<button type="submit" class="btn btn-primary">
+										Escolher
+									</button>
+								</form>
+							</td>
+						</div>
+							<div th:if="${uso == 'veiculosnovos'}">
+							<td>
+								<form th:action="@{/veiculos/definirnovapessoa}" method="POST">
+									<input type="hidden" name="codigoPessoa" th:value="${usuario.codigo}">
+									<button type="submit" class="btn btn-primary">
+										Escolher
+									</button>
+								</form>
+							</td>
+						</div>
+					</tr>
+				</table>
+
+				<div th:replace="~{layout/fragments/paginacao :: paginacao(${pagina})}"></div>
+
+			</div>
+		</main>
+		<!-- !conteudo principal -->
+
+	</div>
+
+</body>
+
+</html>

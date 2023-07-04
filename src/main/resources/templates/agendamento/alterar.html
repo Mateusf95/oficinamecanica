@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR" layout:decorate="~{layout/layoutpadrao}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>Alterar Situação do Agendamento</title>
+</head>
+<body>
+	<div layout:fragment="conteudo">
+
+		<div th:replace="~{layout/fragments/sidebar :: sidebar(opcao='agendamentos')}"></div>
+
+		<!-- conteudo principal -->
+		<main class="mt-5 p-4 pt-5">
+			<div class="container-fluid">
+				<!-- componentedata -->
+				<form th:action="@{/agendamentos/alterar}" method="POST">
+					<input type="hidden" th:field="*{agendamento.codigo}">
+					<!-- <input type="hidden" th:field="*{agendamento}"> -->
+					<!-- <input type="hidden" name="_method" value="put"> -->
+
+					<label for="nome" class="form-label mt-3">Proprietário</label>
+                    <input type="text" id="nome" th:value="${agendamento.veiculo.usuario.nome}" class="form-control" disabled="">
+
+					<label for="marca" class="form-label mt-3">Marca do veículo</label>
+                    <input type="text" id="marca" th:value="${agendamento.veiculo.marca}" class="form-control" disabled="">
+
+					<label for="dataAgendamento" class="form-label mt-3">Data do Agendamento</label>
+                    <input type="text" id="dataAgendamento" th:field="*{agendamento.dataAgendamento}" class="form-control " disabled="" th:errorclass="is-invalid"> 
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('agendamento.dataAgendamento')}"
+						th:each="erro : ${#fields.errors('agendamento.dataAgendamento')}" th:text="${erro} + '. '"></span>
+
+					<label for="situacao" class="form-label mt-3">Situação</label>
+					<select id="situacao" name="situacao"  class="form-select">
+						<option value="AGENDADO">AGENDADO</option>
+						<option value="CONCLUIDO">CONCLUIDO</option>
+						<option value="CANCELADO">CANCELADO</option>
+					</select>
+
+                    <input type="submit" value="Alterar" class="btn btn-primary mt-3">
+
+					<div th:if="${notificacao != null}" th:object="${notificacao}">
+						<input type="hidden" id="mensagem" th:value="*{mensagem}">
+						<input type="hidden" id="tipo" th:value="*{tipo}">
+						<input type="hidden" id="intervalo" th:value="*{intervalo}">
+					</div>	
+                </form>
+			</div>
+		</main>
+		<!-- !conteudo principal -->
+
+	</div>
+
+</body>
+</html>
